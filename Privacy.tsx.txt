@@ -1,0 +1,101 @@
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { Card } from "@/components/ui/card";
+
+const Privacy = () => {
+  return (
+    <div className="flex min-h-screen flex-col">
+      <Navbar />
+      
+      <main className="flex-1">
+        <section className="container py-20">
+          <div className="max-w-3xl mx-auto">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Privacy Policy
+            </h1>
+            <p className="text-muted-foreground mb-12">
+              Last updated: {new Date().toLocaleDateString()}
+            </p>
+
+            <Card className="p-8 shadow-soft space-y-8">
+              <section>
+                <h2 className="text-2xl font-semibold mb-4">1. Information We Collect</h2>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  AI Prompt Studio collects minimal information necessary to provide our services. 
+                  This includes the prompts you create and your usage patterns to improve our platform.
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  We do not collect personal identifying information unless you voluntarily provide it.
+                </p>
+              </section>
+
+              <section>
+                <h2 className="text-2xl font-semibold mb-4">2. How We Use Your Information</h2>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  The information we collect is used to:
+                </p>
+                <ul className="list-disc list-inside text-muted-foreground space-y-2 ml-4">
+                  <li>Provide and maintain our prompt generation service</li>
+                  <li>Improve and optimize the platform</li>
+                  <li>Understand usage patterns and preferences</li>
+                  <li>Communicate important updates and changes</li>
+                </ul>
+              </section>
+
+              <section>
+                <h2 className="text-2xl font-semibold mb-4">3. Data Security</h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  We implement industry-standard security measures to protect your data. However, 
+                  no method of transmission over the internet is 100% secure. We cannot guarantee 
+                  absolute security but strive to use commercially acceptable means to protect your information.
+                </p>
+              </section>
+
+              <section>
+                <h2 className="text-2xl font-semibold mb-4">4. Third-Party Services</h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  We may use third-party services to help analyze how our service is used. These 
+                  third parties have access to your information only to perform tasks on our behalf 
+                  and are obligated not to disclose or use it for any other purpose.
+                </p>
+              </section>
+
+              <section>
+                <h2 className="text-2xl font-semibold mb-4">5. Your Rights</h2>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  You have the right to:
+                </p>
+                <ul className="list-disc list-inside text-muted-foreground space-y-2 ml-4">
+                  <li>Access the personal information we hold about you</li>
+                  <li>Request correction of inaccurate information</li>
+                  <li>Request deletion of your information</li>
+                  <li>Object to processing of your information</li>
+                </ul>
+              </section>
+
+              <section>
+                <h2 className="text-2xl font-semibold mb-4">6. Changes to This Policy</h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  We may update our Privacy Policy from time to time. We will notify you of any 
+                  changes by posting the new Privacy Policy on this page and updating the "Last updated" date.
+                </p>
+              </section>
+
+              <section>
+                <h2 className="text-2xl font-semibold mb-4">7. Contact Us</h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  If you have any questions about this Privacy Policy, please contact us through 
+                  our website or email us at privacy@aiprompt.studio
+                </p>
+              </section>
+            </Card>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default Privacy;

@@ -1,0 +1,86 @@
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { Card } from "@/components/ui/card";
+import { Sparkles, Target, Users, Zap } from "lucide-react";
+
+const About = () => {
+  return (
+    <div className="flex min-h-screen flex-col">
+      <Navbar />
+      
+      <main className="flex-1">
+        <section className="container py-20">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              About AI Prompt Studio
+            </h1>
+            <p className="text-lg text-muted-foreground">
+              Empowering creativity through intelligent prompt generation
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16">
+            <Card className="p-8 shadow-soft hover:shadow-glow transition-all">
+              <Target className="h-12 w-12 text-primary mb-4" />
+              <h3 className="text-2xl font-semibold mb-4">Our Mission</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                We aim to simplify AI interaction by providing users with perfectly crafted prompts. 
+                Our platform bridges the gap between human creativity and AI capabilities, making 
+                advanced AI tools accessible to everyone.
+              </p>
+            </Card>
+
+            <Card className="p-8 shadow-soft hover:shadow-glow transition-all">
+              <Sparkles className="h-12 w-12 text-accent mb-4" />
+              <h3 className="text-2xl font-semibold mb-4">Our Vision</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                To become the leading platform for AI prompt generation, helping millions of users 
+                unlock the full potential of AI technology through intuitive, category-based prompt 
+                creation with adjustable creativity levels.
+              </p>
+            </Card>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-center mb-12">Why Choose Us</h2>
+            <div className="grid md:grid-cols-3 gap-6">
+              <Card className="p-6 text-center shadow-soft hover:shadow-glow transition-all">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
+                  <Zap className="h-8 w-8 text-primary" />
+                </div>
+                <h4 className="font-semibold mb-2">Fast & Efficient</h4>
+                <p className="text-sm text-muted-foreground">
+                  Generate high-quality prompts in seconds
+                </p>
+              </Card>
+
+              <Card className="p-6 text-center shadow-soft hover:shadow-glow transition-all">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 mb-4">
+                  <Users className="h-8 w-8 text-accent" />
+                </div>
+                <h4 className="font-semibold mb-2">User-Friendly</h4>
+                <p className="text-sm text-muted-foreground">
+                  Intuitive interface designed for everyone
+                </p>
+              </Card>
+
+              <Card className="p-6 text-center shadow-soft hover:shadow-glow transition-all">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
+                  <Sparkles className="h-8 w-8 text-primary" />
+                </div>
+                <h4 className="font-semibold mb-2">Customizable</h4>
+                <p className="text-sm text-muted-foreground">
+                  Adjust creativity levels to match your needs
+                </p>
+              </Card>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default About;

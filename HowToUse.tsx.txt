@@ -1,0 +1,96 @@
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+
+const HowToUse = () => {
+  const steps = [
+    {
+      number: "1",
+      title: "Enter Your Topic",
+      description: "Start by typing your idea or topic in the input field. Be as specific or general as you like.",
+    },
+    {
+      number: "2",
+      title: "Choose a Category",
+      description: "Select from Formal, Professional, or Casual based on your desired tone and style.",
+    },
+    {
+      number: "3",
+      title: "Adjust Creativity",
+      description: "Use the slider to set your creativity level from conservative to highly creative.",
+    },
+    {
+      number: "4",
+      title: "Generate & Copy",
+      description: "Click the generate button and copy your perfectly crafted prompt to use anywhere.",
+    },
+  ];
+
+  return (
+    <div className="flex min-h-screen flex-col">
+      <Navbar />
+      
+      <main className="flex-1">
+        <section className="container py-20">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              How to Use AI Prompt Studio
+            </h1>
+            <p className="text-lg text-muted-foreground">
+              Follow these simple steps to create perfect AI prompts
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto space-y-8 mb-16">
+            {steps.map((step, index) => (
+              <Card key={index} className="p-8 shadow-soft hover:shadow-glow transition-all">
+                <div className="flex gap-6 items-start">
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-xl">
+                      {step.number}
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-semibold mb-3">{step.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+
+          <Card className="max-w-4xl mx-auto p-8 shadow-soft bg-gradient-to-br from-primary/5 to-accent/5">
+            <h2 className="text-2xl font-bold mb-6">Understanding Categories</h2>
+            <div className="space-y-4">
+              <div className="flex items-start gap-4">
+                <Badge className="mt-1">Formal</Badge>
+                <p className="text-muted-foreground flex-1">
+                  Best for academic writing, official documents, and situations requiring sophisticated language and structure.
+                </p>
+              </div>
+              <div className="flex items-start gap-4">
+                <Badge className="mt-1">Professional</Badge>
+                <p className="text-muted-foreground flex-1">
+                  Ideal for business communications, reports, and workplace-related content with a balanced tone.
+                </p>
+              </div>
+              <div className="flex items-start gap-4">
+                <Badge className="mt-1">Casual</Badge>
+                <p className="text-muted-foreground flex-1">
+                  Perfect for social media, blogs, and friendly conversations requiring a relaxed, approachable style.
+                </p>
+              </div>
+            </div>
+          </Card>
+        </section>
+      </main>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default HowToUse;

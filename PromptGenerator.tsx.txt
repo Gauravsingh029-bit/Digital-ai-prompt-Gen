@@ -1,0 +1,226 @@
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Slider } from "@/components/ui/slider";
+import { Badge } from "@/components/ui/badge";
+import { Sparkles, Copy, Check } from "lucide-react";
+import { toast } from "sonner";
+
+type Category = "formal" | "professional" | "casual";
+
+const PromptGenerator = () => {
+  const [topic, setTopic] = useState("");
+  const [category, setCategory] = useState<Category>("professional");
+  const [creativity, setCreativity] = useState([50]);
+  const [generatedPrompt, setGeneratedPrompt] = useState("");
+  const [copied, setCopied] = useState(false);
+
+  const generatePrompt = () => {
+    if (!topic.trim()) {
+      toast.error("Please enter a topic first");
+      return;
+    }
+
+    const creativityLevel = creativity[0];
+    let tone = "";
+    let depth = "";
+    let approach = "";
+    
+    // Determine tone based on category
+    if (category === "formal") {
+      tone = creativityLevel > 70 
+        ? "sophisticated, academic language with innovative perspectives and scholarly rigor"
+        : creativityLevel > 40
+        ? "professional, well-structured language with traditional academic approaches"
+        : "strictly conventional, textbook-style formal language";
+    } else if (category === "professional") {
+      tone = creativityLevel > 70
+        ? "expert-level insights with innovative business perspectives and strategic thinking"
+        : creativityLevel > 40
+        ? "balanced professional tone with practical examples and industry best practices"
+        : "straightforward business language with proven methodologies";
+    } else {
+      tone = creativityLevel > 70
+        ? "engaging, conversational style with creative storytelling and vivid examples"
+        : creativityLevel > 40
+        ? "friendly, approachable language with relatable examples"
+        : "simple, everyday language with clear, direct explanations";
+    }
+
+    // Determine depth based on creativity
+    if (creativityLevel > 70) {
+      depth = "Explore unconventional angles, provide multiple perspectives, include thought-provoking questions, and suggest innovative applications. Draw connections to related concepts and future trends.";
+    } else if (creativityLevel > 40) {
+      depth = "Provide balanced analysis with both established knowledge and fresh insights. Include practical examples and real-world applications.";
+    } else {
+      depth = "Focus on core concepts with clear explanations. Provide proven methods and traditional approaches.";
+    }
+
+    // Determine approach based on creativity
+    if (creativityLevel > 70) {
+      approach = "Use creative analogies, incorporate storytelling elements, challenge conventional wisdom, and present bold ideas. Include hypothetical scenarios and imaginative examples.";
+    } else if (creativityLevel > 40) {
+      approach = "Balance proven methods with some creative examples. Use clear analogies and relevant case studies.";
+    } else {
+      approach = "Stick to established facts and proven techniques. Use straightforward examples and conventional wisdom.";
+    }
+
+    const prompt = `📋 COMPREHENSIVE AI PROMPT
+
+🎯 TOPIC: ${topic}
+
+📖 BACKGROUND CONTEXT:
+You are tasked with creating an in-depth, well-researched response about "${topic}". This response should demonstrate expertise while maintaining a ${category} tone throughout. The content needs to be crafted with a creativity level of ${creativityLevel}%, which means: ${tone}
+
+The audience expects ${depth}
+
+🎨 FOREGROUND INSTRUCTIONS:
+${approach}
+
+📝 CONTENT STRUCTURE:
+1. **Introduction** - Begin with a compelling opening that establishes context and captures interest. Define key terms and set the scope.
+
+2. **Core Analysis** - Dive deep into the main aspects of ${topic}. Break down complex concepts into digestible sections. Use headers and subheadings effectively.
+
+3. **Practical Applications** - Provide concrete examples, case studies, or scenarios that illustrate the concepts. Show how this knowledge can be applied in real situations.
+
+4. **Critical Insights** - ${creativityLevel > 60 ? "Challenge assumptions, explore alternative viewpoints, and present innovative perspectives that push boundaries." : "Present balanced viewpoints and well-established insights supported by evidence."}
+
+5. **Implementation Guidelines** - Offer step-by-step guidance or actionable recommendations that readers can follow.
+
+6. **Conclusion** - Synthesize the key points and provide forward-looking statements or calls to action.
+
+💡 QUALITY REQUIREMENTS:
+- Maintain ${category} language throughout
+- ${creativityLevel > 50 ? "Incorporate creative elements, unique perspectives, and engaging narrative devices" : "Focus on clarity, accuracy, and traditional presentation methods"}
+- Ensure logical flow and smooth transitions between sections
+- Back up claims with reasoning${creativityLevel > 60 ? " or thought experiments" : " and established evidence"}
+- Make it ${creativityLevel > 70 ? "captivating and memorable" : creativityLevel > 40 ? "informative and engaging" : "clear and straightforward"}
+
+🎭 TONE & STYLE: ${tone}
+
+✨ EXPECTED OUTPUT: A comprehensive, well-structured response that demonstrates mastery of ${topic} while perfectly balancing informativeness with ${creativityLevel > 60 ? "creative flair" : "professional precision"}.`;
+    
+    setGeneratedPrompt(prompt);
+    toast.success("Enhanced prompt generated successfully!");
+  };
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(generatedPrompt);
+    setCopied(true);
+    toast.success("Copied to clipboard!");
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div className="w-full max-w-4xl mx-auto space-y-6">
+      <Card className="p-6 shadow-soft hover:shadow-glow transition-shadow">
+        <div className="space-y-6">
+          <div className="space-y-2">
+            <Label htmlFor="topic" className="text-base font-semibold">
+              What do you want to create?
+            </Label>
+            <Textarea
+              id="topic"
+              placeholder="Enter your topic or idea here..."
+              value={topic}
+              onChange={(e) => setTopic(e.target.value)}
+              className="min-h-[100px] resize-none"
+            />
+          </div>
+
+          <div className="space-y-3">
+            <Label className="text-base font-semibold">Category</Label>
+            <div className="flex gap-3 flex-wrap">
+              <Badge
+                variant={category === "formal" ? "default" : "outline"}
+                className="cursor-pointer px-4 py-2 text-sm transition-all hover:scale-105"
+                onClick={() => setCategory("formal")}
+              >
+                Formal
+              </Badge>
+              <Badge
+                variant={category === "professional" ? "default" : "outline"}
+                className="cursor-pointer px-4 py-2 text-sm transition-all hover:scale-105"
+                onClick={() => setCategory("professional")}
+              >
+                Professional
+              </Badge>
+              <Badge
+                variant={category === "casual" ? "default" : "outline"}
+                className="cursor-pointer px-4 py-2 text-sm transition-all hover:scale-105"
+                onClick={() => setCategory("casual")}
+              >
+                Casual
+              </Badge>
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <Label className="text-base font-semibold">Creativity Level</Label>
+              <span className="text-sm text-muted-foreground font-medium">
+                {creativity[0]}%
+              </span>
+            </div>
+            <Slider
+              value={creativity}
+              onValueChange={setCreativity}
+              max={100}
+              step={1}
+              className="w-full"
+            />
+            <div className="flex justify-between text-xs text-muted-foreground">
+              <span>Conservative</span>
+              <span>Creative</span>
+            </div>
+          </div>
+
+          <Button
+            onClick={generatePrompt}
+            className="w-full"
+            size="lg"
+          >
+            <Sparkles className="mr-2 h-4 w-4" />
+            Generate Prompt
+          </Button>
+        </div>
+      </Card>
+
+      {generatedPrompt && (
+        <Card className="p-6 shadow-soft border-primary/20 animate-in fade-in slide-in-from-bottom-4">
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <Label className="text-base font-semibold">Generated Prompt</Label>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={copyToClipboard}
+                className="gap-2"
+              >
+                {copied ? (
+                  <>
+                    <Check className="h-4 w-4" />
+                    Copied
+                  </>
+                ) : (
+                  <>
+                    <Copy className="h-4 w-4" />
+                    Copy
+                  </>
+                )}
+              </Button>
+            </div>
+            <div className="p-4 bg-muted rounded-lg max-h-[600px] overflow-y-auto">
+              <pre className="text-sm leading-relaxed whitespace-pre-wrap font-sans">{generatedPrompt}</pre>
+            </div>
+          </div>
+        </Card>
+      )}
+    </div>
+  );
+};
+
+export default PromptGenerator;

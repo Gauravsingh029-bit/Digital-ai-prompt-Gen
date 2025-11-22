@@ -1,0 +1,105 @@
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import PromptGenerator from "@/components/PromptGenerator";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Sparkles, Zap, Target } from "lucide-react";
+import { Link } from "react-router-dom";
+
+const Index = () => {
+  return (
+    <div className="flex min-h-screen flex-col">
+      <Navbar />
+      
+      <main className="flex-1">
+        <section className="relative overflow-hidden bg-gradient-to-b from-primary/5 via-accent/5 to-background py-20 md:py-32">
+          <div className="container">
+            <div className="max-w-3xl mx-auto text-center space-y-8">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
+                <Sparkles className="h-4 w-4" />
+                AI-Powered Prompt Generation
+              </div>
+              
+              <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
+                Create Perfect AI Prompts{" "}
+                <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                  Instantly
+                </span>
+              </h1>
+              
+              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+                Generate professional, creative prompts tailored to your needs. 
+                Choose your category, adjust creativity, and get results in seconds.
+              </p>
+
+              <div className="flex gap-4 justify-center flex-wrap">
+                <Button size="lg" asChild>
+                  <a href="#generator">
+                    Start Creating
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </a>
+                </Button>
+                <Button size="lg" variant="outline" asChild>
+                  <Link to="/how-to-use">Learn How</Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-16 bg-card">
+          <div className="container">
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              <div className="text-center space-y-4">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10">
+                  <Target className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold">Category Selection</h3>
+                <p className="text-muted-foreground">
+                  Choose from Formal, Professional, or Casual styles
+                </p>
+              </div>
+
+              <div className="text-center space-y-4">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/10">
+                  <Zap className="h-8 w-8 text-accent" />
+                </div>
+                <h3 className="text-xl font-semibold">Creativity Control</h3>
+                <p className="text-muted-foreground">
+                  Adjust the creativity level to match your needs
+                </p>
+              </div>
+
+              <div className="text-center space-y-4">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10">
+                  <Sparkles className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold">Instant Results</h3>
+                <p className="text-muted-foreground">
+                  Get professional prompts in seconds, ready to use
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="generator" className="py-20">
+          <div className="container">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Generate Your Prompt
+              </h2>
+              <p className="text-muted-foreground text-lg">
+                Start creating professional AI prompts in just a few clicks
+              </p>
+            </div>
+            <PromptGenerator />
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default Index;

@@ -1,0 +1,78 @@
+import { Link } from "react-router-dom";
+import { Sparkles } from "lucide-react";
+
+const Footer = () => {
+  return (
+    <footer className="w-full border-t border-border bg-card mt-auto">
+      <div className="container py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="space-y-4">
+            <Link to="/" className="flex items-center gap-2 font-bold text-lg">
+              <Sparkles className="h-5 w-5 text-primary" />
+              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                AI Prompt Studio
+              </span>
+            </Link>
+            <p className="text-sm text-muted-foreground">
+              Generate professional AI prompts with creativity and precision.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold mb-4">Product</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link to="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  Prompt Generator
+                </Link>
+              </li>
+              <li>
+                <Link to="/how-to-use" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  How to Use
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-semibold mb-4">Company</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link to="/about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link to="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-semibold mb-4">Legal</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link to="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link to="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-8 pt-8 border-t border-border text-center text-sm text-muted-foreground">
+          <p>&copy; {new Date().getFullYear()} AI Prompt Studio. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
